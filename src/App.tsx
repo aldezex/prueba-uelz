@@ -1,34 +1,22 @@
 import { useEffect, useState } from 'react';
 
 const images = [
-	{ id: 'blush', src: 'public/assets/images/blush.png' },
-	{ id: 'uelz', src: 'public/assets/images/uelz.png' },
-	{ id: 'nomefio', src: 'public/assets/images/nomefio.png' },
-	{ id: 'incognito', src: 'public/assets/images/incognito.png' },
-	{ id: 'lovely', src: 'public/assets/images/lovely.png' },
+	{ id: 'blush', src: '/assets/images/blush.png' },
+	{ id: 'uelz', src: '/assets/images/uelz.png' },
+	{ id: 'nomefio', src: '/assets/images/nomefio.png' },
+	{ id: 'incognito', src: '/assets/images/incognito.png' },
+	{ id: 'lovely', src: '/assets/images/lovely.png' },
 	{
 		id: 'llorandoporlaprueba',
-		src: 'public/assets/images/llorandoporlaprueba.png',
+		src: '/assets/images/llorandoporlaprueba.png',
 	},
-	{ id: 'alvaro', src: 'public/assets/images/alvaro.png' },
-	{ id: 'melapaso', src: 'public/assets/images/melapaso.png' },
-	{ id: 'cowboy', src: 'public/assets/images/cowboy.png' },
+	{ id: 'alvaro', src: '/assets/images/alvaro.png' },
+	{ id: 'melapaso', src: '/assets/images/melapaso.png' },
+	{ id: 'cowboy', src: '/assets/images/cowboy.png' },
 ];
 
 const cards = [...images, ...images];
 const shuffledCards = cards.sort(() => Math.random() - 0.5);
-
-const map = new Map([
-	['blush', 'blush'],
-	['uelz', 'uelz'],
-	['nomefio', 'nomefio'],
-	['incognito', 'incognito'],
-	['lovely', 'lovely'],
-	['llorandoporlaprueba', 'llorandoporlaprueba'],
-	['alvaro', 'alvaro'],
-	['melapaso', 'melapaso'],
-	['cowboy', 'cowboy'],
-]);
 
 function App() {
 	const [startTime, _setStartTime] = useState<number>(new Date().getTime());
@@ -42,8 +30,9 @@ function App() {
 			const [firstCard, secondCard] = selectedCards;
 			const firstCardImage = shuffledCards[firstCard - 1];
 			const secondCardImage = shuffledCards[secondCard - 1];
-			const firstCardImageId = map.get(firstCardImage.id);
-			const secondCardImageId = map.get(secondCardImage.id);
+
+			const firstCardImageId = firstCardImage.id;
+			const secondCardImageId = secondCardImage.id;
 
 			if (firstCardImageId === secondCardImageId) {
 				setMatchedCards([...matchedCards, firstCard, secondCard]);
@@ -119,7 +108,7 @@ function App() {
 							}}
 							key={index}
 							onClick={() => selectCard(index + 1)}
-							src={`public/assets/images/${index + 1}.png`}
+							src={`/assets/images/${index + 1}.png`}
 							alt={image.id}
 						/>
 					);
@@ -176,7 +165,7 @@ function Modal({ time }: { time: number }) {
 				style={{ height: 60, display: 'flex', alignItems: 'center', gap: 8 }}
 			>
 				<img
-					src="public/assets/images/Clock.png"
+					src="/assets/images/Clock.png"
 					alt="clock"
 					style={{ width: 40, height: 40 }}
 				/>
